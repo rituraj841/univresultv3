@@ -1,0 +1,55 @@
+<html>
+<head>
+{{>head}}
+</head>
+<body>
+{{>menu}}
+<div class="container">
+    <div class="right">
+    <div class="row">
+    <h1 align="center" class="margin-base-vertical">Use This Page to Submit Result Data</h1>        
+    <!-- <form method="post" action="/marksEntry"> -->
+    <h3 align="center" class="margin-base-vertical">Student Information </h3>
+        <table class="table">
+          <tr>
+            <th>Student Name: {{marks.xname}}</th>
+            <th>Roll: {{user.rollnumber}}</th>
+            <th>Gender: {{user.gender}}</th>
+            <th>DOB: {{user.username}}</th>
+            <th>Student Mobile: {{user.studentmobile}}</th>
+            <th>F Name: {{user.fname}}</th>
+            <th>M Name: {{user.mname}}</th>
+            <th>Parent Mob.: {{user.parentmobile}}</th>
+            <th>Address: {{user.address}}</th>
+            <th>Fl No.: {{user.flat}}</th>
+            <th>Landmark: {{user.landmark}}</th>
+            <th>City: {{user.city}}</th>
+            <th>State: {{user.state}}</th>
+          </tr>
+        </table>  
+ <!-- <div class="container">
+	<div class="row">
+		<h1 align="center" class="margin-base-vertical">Use This Page to Submit Result Data</h1>	  	
+    <form method="post" action="/marksEntry">
+      <fieldset>
+        <legend>Academic Scorecard</legend>
+        <h3>Subjectwise Marks:</h3><br>
+        <h4>Physics:</h4>
+        <input type="text" name="physics" required class="form-control input-sm" placeholder="Physics">
+        <br>
+        <h4>Chemistry:</h4>
+        <input type="text" name="chemistry" required class="form-control input-sm" placeholder="Chemistry">
+        <br>
+        <h4>Maths:</h4>
+        <input type="text" name="maths" required class="form-control input-sm" placeholder="Maths">
+        <br>
+        <h4>Computer Programming:</h4>
+        <input type="text" name="computer" required class="form-control input-sm" placeholder="Computer Programming">
+        <br>
+        <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+ -->	
+{{>jsIncludes}}
+</body>
+</html>
