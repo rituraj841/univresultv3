@@ -142,31 +142,47 @@ exports.resultHandler = function(req,res){
   });
 }//resultHandler
 ///////////////////////I M WORKING HERE//////////////////////////////////////////////////////////////////
+exports.marksEntryInitialForm = function(req, res){
+   res.render("marksEntryInitForm.handlebars",
+          { AUTHENTICATED:req.session.authenticated,
+            IS_ADMIN:req.session.isAdmin,
+            LOGGED_USER_NAME: req.session.loggedinUser});
+};
 exports.marksEntryForm = function(req,res){
   var rollnumberReq = req.body.rollnumber;
   // console.log("resultPageHandler rollnum" + rollReq);
 
-  userModel.findOne({rollnumber:rollnumberReq}, function(err, stdntRec){
-    if (!err && stdntRec != null){
+  userModel.findOne({rollnumber:rollnumberReq}, function(err, userRec){
+    if (!err && userRec != null){
 
-      req.session.studentInSession = rollnumberReq;
-
-      res.render('marksEntryForm.handlebars', //Sends all data records from database to marks entry show page////////////
-          {user:stdntRec,
+      mModel.findOne({roll:rollnumberReq}, function(err, marksRec){
+        if (!err && marksRec != null){
+          var msg = "<span class='label label-danger'>This Student's marks record is already entered</span>";
+          res.render('marksEntryInitForm.handlebars', 
+          { ErrorMessage:msg,
             IS_ADMIN:req.session.isAdmin,
-            STUD_ROLL:req.session.studentInSession,
             AUTHENTICATED:req.session.authenticated,
             LOGGED_USER_NAME: req.session.loggedinUser});
+        }
+        else{
+          res.render('marksEntryForm.handlebars', //Sends all data records from database to marks entry show page////////////
+          { user:userRec,
+            IS_ADMIN:req.session.isAdmin,
+            AUTHENTICATED:req.session.authenticated,
+            LOGGED_USER_NAME: req.session.loggedinUser});
+        }
+      });
+
     }else{
-      console.log("roll number not found");
-      var message = "<span class='label label-danger'>Record not found. Check Your Roll Number</span>";
-      res.render('landingpage.handlebars',
-          {welcomeMessage:message,
-          IS_ADMIN:req.session.isAdmin,
-          STUD_ROLL:req.session.studentInSession,
-          AUTHENTICATED:req.session.authenticated,
-          LOGGED_USER_NAME: req.session.loggedinUser});      
+      console.log("roll number not found in user collection");
+      var message = "<span class='label label-danger'>User record not found. Check Your Roll Number</span>";
+          res.render('marksEntryInitForm.handlebars', 
+          { ErrorMessage:message,
+            IS_ADMIN:req.session.isAdmin,
+            AUTHENTICATED:req.session.authenticated,
+            LOGGED_USER_NAME: req.session.loggedinUser});
     } 
+
 
   });
 }//resultPageHandler///////this is the original route.js file for marks entry page/////
@@ -250,12 +266,7 @@ exports.crosslistHandler = function(req,res){
     }
   });//find
 }
-exports.queryFormFormHandler = function(req, res){
-   res.render("queryform.handlebars",
-          { AUTHENTICATED:req.session.authenticated,
-            IS_ADMIN:req.session.isAdmin,
-            LOGGED_USER_NAME: req.session.loggedinUser});
-};
+
 
 /////////////////////////////ADD/EDIT/DELETE/SAVE CHANGES///////////////////////////////////////////////////
 

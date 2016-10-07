@@ -5,90 +5,54 @@
 {{>menu}}    
 <br><br><br>
 <div class="container">
-    <div class="right">
-    <div class="row">
-    <div class="col-md-8 col-md-offset-2 panel panel-default">
-	
-            <h2> Student Information <h2>
-            <h3></h3>
-
-			<table class="table">
-			  <tr>
-			    <td><p>Student Name: {{user.username}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Roll: {{user.rollnumber}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Gender: {{user.gender}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>DOB: {{user.dob}}</p></td>		
-			  </tr>
-			  <tr>
-			    <td><p>Student Mobile: {{user.studentmobile}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>F Name: {{user.fname}}</p></td>
-			    </tr>
-			  <tr>
-			    <td><p>M Name: {{user.mname}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Parent Mob.: {{user.parentmobile}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Address: {{user.address}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Fl No.: {{user.flat}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Landmark: {{user.landmark}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>City: {{user.city}}</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>State: {{user.state}}</p></td>
-			  </tr>
-			</table>
+    <div class="row  col-md-6 col-md-offset-2 panel panel-default">
+	    <h3>Student's  Profile</h3>
+		<table >
+		  <tr>
+		    <td>Student Name: {{user.username}}</td>
+		    <td>Roll: {{user.rollnumber}}</td>
+		    <td>Gender: {{user.gender}}</td>
+		    <td>DOB: {{user.dob}}</td>		
+		    <td>Student Mobile: {{user.studentmobile}}</td>
+		  </tr>
+		  <tr>
+		    <td>Father's Name: {{user.fname}}</td>
+		    <td>Mother's Name: {{user.mname}}</td>
+		    <td>Parent Mob.: {{user.parentmobile}}</td>
+		    <td>Address: {{user.address}}</td>
+		    <td>Fl No.: {{user.flat}}</td>
+		  </tr>
+		  <tr>
+		    <td>Landmark: {{user.landmark}}</td>
+		    <td><City: {{user.city}}</td>
+		    <td>State: {{user.state}}</td>
+		  </tr>
+		</table>
 	</div>
-    </div>
-	</div>
-<br><br><br>				
-<div class="container">
-	<div class="row">
-	<div class="col-md-8 col-md-offset-0 panel panel-default">
-	<h1 align="center" class="margin-base-vertical">Use This Page to Submit Result Data</h1>	  	
-    <form method="post" action="/marksEntry">
-      <fieldset>
-      <legend>Personal information:</legend>
-        <h4>Student Name:</h4>
-        <input type="text" name="nm" required class="form-control input-sm" placeholder="Name">
-        <br>
-        <h4>Roll No.:</h4>
-        <input type="number" name="roll" required class="form-control input-sm" placeholder="Roll" readonly value={{STUD_ROLL}}>
-        <br>
-        <legend>Academic Scorecard</legend>
-        <h3>Subjectwise Marks:</h3><br>
-        <h4>Physics:</h4>
-        <input type="text" name="physics" required class="form-control input-sm" placeholder="Physics">
-        <br>
-        <h4>Chemistry:</h4>
-        <input type="text" name="chemistry" required class="form-control input-sm" placeholder="Chemistry">
-        <br>
-        <h4>Maths:</h4>
-        <input type="text" name="maths" required class="form-control input-sm" placeholder="Maths">
-        <br>
-        <h4>Computer Programming:</h4>
-        <input type="text" name="computer" required class="form-control input-sm" placeholder="Computer Programming">
-        <br>
-        <input type="submit" value="Submit">
-        </fieldset>
-    </form>
-
-		</div>
+			
+	<div class="row  col-md-6 col-md-offset-2 panel panel-default">
+		<div class="well">
+		    <form method="post" action="/marksEntry">
+		      <fieldset>
+		      	<legend>Academics</legend>
+		        Student Name:
+		        <input type="text" name="nm" required value={{user.username}} readonly
+		        class="form-control input-sm" placeholder="Name">
+		        Roll No.:
+		        <input type="number" name="roll" required class="form-control input-sm" placeholder="Roll" readonly value={{user.rollnumber}}>
+		        <h3>-:Marks:-</h3><br>
+				Physics:
+		        <input type="text" name="physics" required class="form-control input-sm" placeholder="Physics">
+				Chemistry:
+		        <input type="text" name="chemistry" required class="form-control input-sm" placeholder="Chemistry">
+				Maths:
+		        <input type="text" name="maths" required class="form-control input-sm" placeholder="Maths">
+				Computer Programming:
+		        <input type="text" name="computer" required class="form-control input-sm" placeholder="Computer Programming">
+		        <input type="submit" value="Submit">
+		       </fieldset>
+		    </form>
+	    </div>
     </div>
 </div>
 

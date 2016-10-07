@@ -26,6 +26,11 @@ THINGS ACCOMPLISHED
 7.Added glyphicons to menu 
 
 TO DO LIST
+    1.regnlink  only visible to admin  after login.should not be accessed by anybody else
+    2.bcrypt js 
+    3.recalculate total on marks entry
+    4.donot allow marks entry for user whose marks has already been entered.
+
 
 	 
 	2.bcrypt js 
