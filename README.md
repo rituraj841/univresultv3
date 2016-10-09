@@ -24,15 +24,16 @@ THINGS ACCOMPLISHED
 5.Scorecard view  for students by admin(by entering roll number)
 6.Auto Fill Roll umber at the time of Marks Entry.
 7.Added glyphicons to menu 
+8.Does not allow marks entry for user whose marks has already been entered.
+9.regnlink  only visible to admin  after login.should not be accessed by anybody else.
+10.State select list in Register Menu
+10.Registered Student List Data in Admin console
+
 
 TO DO LIST
-    1.regnlink  only visible to admin  after login.should not be accessed by anybody else
-    2.bcrypt js 
-    3.recalculate total on marks entry
-    4.donot allow marks entry for user whose marks has already been entered.
+    2.recalculate total on marks entry. 
+    3.bcrypt js
 
 
 	 
-	2.bcrypt js 
-
-
+	

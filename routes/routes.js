@@ -268,6 +268,22 @@ exports.crosslistHandler = function(req,res){
 }
 
 
+exports.StudentInformationHandler = function(req,res){
+  var studentArray;
+  userModel.find({}, function(err, userRec){
+    if (!err && userRec != null){
+      console.log(JSON.stringify(userRec));
+      studentArrray = userRec;
+      outcomeBoolean = 1;
+      res.render('registeredstudents.handlebars',
+          {candidate:userRec,
+            IS_ADMIN:req.session.isAdmin,
+            AUTHENTICATED:req.session.authenticated,
+            LOGGED_USER_NAME: req.session.loggedinUser});
+    }
+  });//find
+}
+
 /////////////////////////////ADD/EDIT/DELETE/SAVE CHANGES///////////////////////////////////////////////////
 
 exports.deleteHandler = function(req, res){
@@ -324,3 +340,4 @@ exports.saveChangesHandler = function(req, res){
    }
   });
 }; //saveChangesHandler
+

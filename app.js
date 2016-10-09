@@ -52,6 +52,7 @@ app.get('/crosslist', routes.crosslistHandler);
 app.get('/delete', routes.deleteHandler);
 app.get('/edit', routes.editPageHandler);
 app.post('/saveChanges', routes.saveChangesHandler);
+app.get('/studentinformation' , routes.StudentInformationHandler);
 
 
 app.use("*", function(req, res) {
