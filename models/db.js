@@ -51,7 +51,16 @@ var marksSchema = new mongoose.Schema({		///////Name of the schema is marks/////
   division: {type: String}
 }, {collection: 'studentscorecard'});
 
+var quizSchema = new mongoose.Schema({   ///////Name of the schema is marks/////////
+  question1: {type: String},
+  question2: {type: String},
+  question3: {type: String},
+  question4: {type: String},
+  question5: {type: String},
+}, {collection: 'quizdatarecords'});
+
 
 // register the User & marksSchema model
 mongoose.model( 'User', userSchema);
 mongoose.model( 'marksModel', marksSchema);
+mongoose.model( 'quizModel', quizSchema);

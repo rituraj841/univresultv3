@@ -26,6 +26,7 @@ app.all('*', function(req, res, next){
 			|| (req.path === "/authenticate")
 			|| (req.path === "/registerForm")
 			|| (req.path === "/register")
+			|| (req.path === "/studentinformation")
 			){
 			console.log("You are going through the auth process.");
 			next();
@@ -53,6 +54,8 @@ app.get('/delete', routes.deleteHandler);
 app.get('/edit', routes.editPageHandler);
 app.post('/saveChanges', routes.saveChangesHandler);
 app.get('/studentinformation' , routes.StudentInformationHandler);
+app.get('/quizpage', routes.quizHandler);
+app.post('/quizDataSubmit', routes.quizSubmitHandler);
 
 
 app.use("*", function(req, res) {

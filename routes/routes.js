@@ -2,7 +2,7 @@ var mongoose = require( 'mongoose' );
 var User = mongoose.model( 'User' );
 var mModel = mongoose.model('marksModel');
 var userModel = mongoose.model('User');
-
+var qModel = mongoose.model( 'quizModel' );
 
 exports.loginFormHandler = function (req, res){
 	res.render('login.handlebars', {});
@@ -341,3 +341,128 @@ exports.saveChangesHandler = function(req, res){
   });
 }; //saveChangesHandler
 
+// exports.saveChangesHandler = function(req, res){
+//     var rollRequest = req.body.roll;
+//     var phySubjRequest = req.body.physics;
+//     var chemSubjRequest = req.body.chemistry;
+//     var mathsSubjRequest = req.body.maths;
+//     var compSubjRequest = req.body.computer;
+//     // var nameReq = req.body.name;////req=request
+//    // var rollReq = req.body.roll;
+//    // var physicsReq = req.body.physics;
+//    // var chemistryReq = req.body.chemistry;
+//    // var mathsReq = req.body.maths;
+//    // var computerReq = req.body.computer;
+
+//    // console.log("name=%s roll=%s",nameReq, rollReq );
+//    // console.log("physics=%s chem=%s maths=%s comp=%s",physicsReq, chemistryReq ,mathsReq ,computerReq );
+
+//    var updtmarks = new mModel();
+//    // updtmarks.xname = rollRequest;
+//    updtmarks.roll = rollRequest;
+//    updtmarks.physics = phySubjRequest;
+//    updtmarks.chemistry = chemSubjRequest;
+//    updtmarks.maths = mathsSubjRequest;
+//    updtmarks.computer = compSubjRequest
+//    updtmarks.totalmarks = parseInt(updtmarks.physics)
+//               + parseInt(updtmarks.chemistry)
+//               + parseInt(updtmarks.maths)
+//               + parseInt(updtmarks.computer) ;
+//    var perc = (updtmarks.totalmarks * 100)/400; 
+//    var div; 
+//    if (perc >= 60 ){
+//     div = "1st";
+//    }else if (perc >= 45){
+//     div = "2nd";
+//    }else if (perc >= 30 ){
+//     div = "3rd";
+//    }else {
+//     div ="fail";
+//    }
+//   updtmarks.division = div;
+//   // console.log(" Marks total=%s", updtmarks.totalmarks);
+//    //save to db through model
+//    mModel.update({roll:rollRequest}, 
+//                     {$set: { physics: phySubjRequest, chemistry: chemSubjRequest, maths: mathsSubjRequest, computer: compSubjRequest}}, 
+//                     {multi:false}, function(err, updatedRec){
+//    if(err){
+//      var message = '<span class="label label-danger">Update Failed</span>';
+//      res.render('landingpage.handlebars', {welcomeMessage:message, 
+//             IS_ADMIN:req.session.isAdmin,
+//             AUTHENTICATED:req.session.authenticated,
+//               LOGGED_USER_NAME: req.session.loggedinUser});
+//    }else{
+//      var message = '<span class="label label-success">Update succesful</span>';
+//      res.render('landingpage.handlebars', {welcomeMessage:message, 
+//             IS_ADMIN:req.session.isAdmin,
+//             AUTHENTICATED:req.session.authenticated,
+//             LOGGED_USER_NAME: req.session.loggedinUser});
+//    }
+//   });
+// }; //saveChangesHandler
+// updtmarks.save(function(errorx, savedRec){
+//        if(errorx){
+//          var message = "A entry already exists with that name or roll";
+//          console.log(message);
+//          res.render('landingpage.handlebars',
+//           {welcomeMessage:"Entry Submission failed",
+//             AUTHENTICATED:req.session.authenticated,
+//             IS_ADMIN:req.session.isAdmin,
+//             LOGGED_USER_NAME: req.session.loggedinUser});
+//        }else{
+//          //req.session.newmarks = savedstudentsscorecard.marks;
+//          res.render('landingpage.handlebars',
+//           {welcomeMessage:"Entries Submitted succesfully",
+//             AUTHENTICATED:req.session.authenticated,
+//             IS_ADMIN:req.session.isAdmin,
+//             LOGGED_USER_NAME: req.session.loggedinUser});
+//        }
+//    });
+// };//marksEntry
+
+
+exports.quizHandler = function(req, res){
+   res.render("quizpage.handlebars",
+          {IS_ADMIN:req.session.isAdmin,
+            AUTHENTICATED:req.session.authenticated,
+            USER_ROLL:req.session.rollInSession,
+            LOGGED_USER_NAME: req.session.loggedinUser});
+}; //quizHandler
+
+exports.quizSubmitHandler = function(req, res){
+   var question1Req = req.body.qn-1;////req=request
+   var question2Req = req.body.qn-2;
+   // var question3Req = req.body.qn-3;
+   // var question4Req = req.body.qn-4;
+   // var question5Req = req.body.qn-5;
+   
+   // console.log("name=%s roll=%s",nameReq, rollReq );
+   // console.log("physics=%s chem=%s maths=%s comp=%s",physicsReq, chemistryReq ,mathsReq ,computerReq );
+
+   var newquiz = new qModel();
+   newquiz.question1 = question1Req;
+   newquiz.question2 = question2Req;
+   // newquiz.question3 = question3Req;
+   // newquiz.question4 = question4Req;
+   // newquiz.question5 = question5Req;
+   
+   //save to db through model
+   newquiz.save(function(errorx, savedRec){
+       if(errorx){
+         var message = "A entry already exists ";
+         console.log(message);
+         res.render('landingpage.handlebars',
+          {welcomeMessage:"Entry Submission failed",
+            AUTHENTICATED:req.session.authenticated,
+            IS_ADMIN:req.session.isAdmin,
+            LOGGED_USER_NAME: req.session.loggedinUser});
+       }else{
+         //req.session.newmarks = savedstudentsscorecard.marks;
+         res.render('quizpage.handlebars',
+          {welcomeMessage:"Entries Submitted succesfully",
+            AUTHENTICATED:req.session.authenticated,
+            IS_ADMIN:req.session.isAdmin,
+            LOGGED_USER_NAME: req.session.loggedinUser});
+       }
+   });
+};//marksEntry
